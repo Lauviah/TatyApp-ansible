@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Install Apache
+    yum:
+      name: httpd
+      state: present
+  - name: Start Apache service
+    service:
+      name: httpd
+      state: started
+      enabled: true
+  - name: Ensure Apache is listening on port 80
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^Listen '
+      line: 'Listen 80'

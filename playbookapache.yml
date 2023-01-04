@@ -11,6 +11,10 @@
       name: httpd
       state: started
       enabled: true
+  - name: Dpeloy sttaic website
+    copy:    
+      src: index.html
+      dest: /var/www/html/
   - name: Ensure Apache is listening on port 80
     lineinfile:
       path: /etc/httpd/conf/httpd.conf
